@@ -46,15 +46,17 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
 
    
   
-let tempFriends=friends;
+    let friendsData=friends;
 
-const friend=tempFriends[index];
+    const friend=friendsData[index];
 
-const updatedFried={...friend,[key]:value}
+    const updatedFried={...friend,[key]:value}
 
-tempFriends[index] = {name:updatedFried.name, address:updatedFried.address}
+    friendsData[index] = {name:updatedFried.name, address:updatedFried.address}
 
-setFriends(prevState=>([...tempFriends]))
+    setFriends(prevState=>([...friendsData]))
+
+    console.log(friends)
 
 
   }
