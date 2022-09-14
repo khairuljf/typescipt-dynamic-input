@@ -30,7 +30,7 @@ const SingleUser:React.FC<props> = ({contacts, contact, setCotnacts, setContact}
      <tr>
     <td>{contact.name}</td>
     <td>{contact.address}</td>
-    <td>Friend Name : Name<br></br>
+    <td>Friend Name : name<br></br>
         Address : Address</td>
     <td>
         <span className='edit' onClick={(e)=> handleEdit(contact)}>Edit</span>

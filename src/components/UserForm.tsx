@@ -28,7 +28,8 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
         );
 
     }else{
-      const newContact  = { ...contact, id:uuid(),  }
+      const newContact  = { ...contact, ...friends, id:uuid(),  }
+      console.log(newContact)
       setCotnacts(prevState=> ([ ...prevState, newContact  ]));
     }
 
@@ -44,8 +45,6 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
     const key=event?.target?.name;
     const value=event?.target?.value;
 
-   
-  
     let friendsData=friends;
 
     const friend=friendsData[index];
@@ -55,9 +54,6 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
     friendsData[index] = {name:updatedFried.name, address:updatedFried.address}
 
     setFriends(prevState=>([...friendsData]))
-
-    console.log(friends)
-
 
   }
 
