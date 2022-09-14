@@ -1,0 +1,111 @@
+.App{
+  width: 90%;
+  margin: 0 auto;
+}
+
+button{
+  cursor: pointer;
+}
+.text-center{
+  text-align: center;
+}
+
+.main-content{
+  display: flex
+}
+
+.userform{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  row-gap: 10px;
+  overflow: hidden;
+}
+.selft-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.friends-info {
+  display: flex;
+  justify-content: end;
+  column-gap: 10px;
+}
+.friends-info.action,
+.friend-inform.form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: end; */
+  margin-left: auto;
+  row-gap: 8px;
+}
+
+.friend-inform  span,
+.friends-info span {
+  padding: 10px 20px;
+  border: 2px solid #999;
+  color: #fff;
+  cursor: pointer;
+  width: max-content;
+}
+
+.friend-inform  span{
+  margin-left: auto;
+  background: red;
+  border: 2px solid red;
+}
+
+.friends-info span{
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: green;
+  border-color: green;
+  box-sizing: border-box;
+}
+
+.friend-inform  span:hover,
+.friends-info span:hover {
+  background: transparent;
+  color: #999;
+}
+.userform button,
+.userform input {
+  height: 50px;
+  padding: 0 10px;
+}
+.userform textarea{
+  height: 100px;
+  padding: 10px;
+}
+
+.result{
+  padding-left: 100px;
+  width: 50%;
+}
+
+.result table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result table tr,
+.result table{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+
+.result td, .result th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.delete,
+.edit{
+cursor: pointer;
+margin: 0 5px;
+background: #9999;
+padding: 5px 10px;
+}
