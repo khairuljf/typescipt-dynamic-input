@@ -97,7 +97,7 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
                   />
               <textarea 
                   name="address"
-                  placeholder='About address'
+                  placeholder='Your address'
                   value={contact.address}
                   onChange={(e)=> setContact(prevState=>({
                     ...prevState,
