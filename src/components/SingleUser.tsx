@@ -28,17 +28,17 @@ const SingleUser:React.FC<props> = ({contacts, contact, setCotnacts, setContact,
         setContact(prevState=>({...prevState, ...contact}))
         setFriends(prevState=>([...contact.friendsInfo]))
     }
+ 
     
-    
-
   return (
     <>
      <tr>
     <td>{contact.name}</td>
     <td>{contact.address}</td>
    <td>
-   { 
-    contact.friendsInfo.map((item, index)=><div key={index}><b>Name</b> : {item.name}<br></br>   <b>Address :</b> {item.address}</div>)
+   { contact.friendsInfo.length >0  ?
+    contact.friendsInfo.map((item, index)=><div key={index}><b>Name</b> : {item.name}<br></br>   <b>Address :</b> {item.address}</div>) : 
+    <div>You don,t have any friend</div>
    }
 </td>
 

@@ -66,9 +66,6 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
 
   const addFields = () => {
     let newfield:{ name: string, address: string } = { name: '', address: '' }
-
-    //const allFriends = {...friends};
-    //allFriends.push(newfield)
     setFriends(prevState=>([...prevState, newfield]))
   }
 
