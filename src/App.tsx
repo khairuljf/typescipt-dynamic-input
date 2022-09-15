@@ -22,16 +22,21 @@ function App() {
 
   });
 
+  const [friends, setFriends] = useState<{name:string;address:string }[]>([{
+    name:'',
+    address:''
+  }]) 
+
 
   return (
     <div className="App">
           <header>
-            <h1 className='text-center'>User Info</h1>
+            <h1 className='text-center'>You & Your Friends</h1>
           </header>
           <div className='main-content'>
-               <UserForm  setCotnacts={setCotnacts} contact={contact}  setContact={setContact} contacts={contacts}  /> 
+               <UserForm  setCotnacts={setCotnacts} contact={contact}  setContact={setContact} contacts={contacts}  friends={friends} setFriends={setFriends} /> 
               <div className="result">
-                  <UserList contacts={contacts} setCotnacts={setCotnacts} setContact={setContact} />
+                  <UserList contacts={contacts} setCotnacts={setCotnacts} setContact={setContact} setFriends={setFriends} />
               </div>
           </div>
     </div>

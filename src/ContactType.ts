@@ -2,8 +2,8 @@ export interface ContactType{
         id:string;
         name:string;
         address:string;
-        friendsInfo:[{
+        friendsInfo:{
                 name:string;
                 address:string
-        }]
+        }[]
 }

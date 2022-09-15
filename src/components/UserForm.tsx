@@ -6,15 +6,18 @@ interface props{
   setCotnacts:React.Dispatch<React.SetStateAction<ContactType[]>>
   setContact:React.Dispatch<React.SetStateAction<ContactType>>
   contact:ContactType;
-  contacts:ContactType[]
+  contacts:ContactType[];
+  friends: {
+    name: string;
+    address: string;
+}[];
+setFriends: React.Dispatch<React.SetStateAction<{
+  name: string;
+  address: string;
+}[]>>
 }
 
-const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact }) => {
-
-  const [friends, setFriends] = useState([{
-    name:'',
-    address:''
-  }]) 
+const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact, friends, setFriends }) => {
 
 
 
@@ -23,19 +26,23 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
 
     if(contact.id){
       const newContact = {...contact}
+            newContact.friendsInfo = friends
         setCotnacts(
           contacts.map((contactList) => (contactList.id === contact.id ? { ...newContact } : contactList))
         );
 
     }else{
-      const newContact  = { ...contact, ...friends, id:uuid(),  }
-      console.log(newContact)
+      const newContact  = { ...contact, id:uuid()  }
+   
+      newContact.friendsInfo =friends
+
       setCotnacts(prevState=> ([ ...prevState, newContact  ]));
     }
 
    
 
     contact.id = contact.name = contact.address='';
+    setFriends([{ name:'',  address:''  }])
 
   } 
 
@@ -58,13 +65,15 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
   }
 
   const addFields = () => {
-    let newfield = { name: '', address: '' }
+    let newfield:{ name: string, address: string } = { name: '', address: '' }
 
+    //const allFriends = {...friends};
+    //allFriends.push(newfield)
     setFriends(prevState=>([...prevState, newfield]))
   }
 
   const removeFields = (index:number) => {
-    let data = [...friends];
+    let data: { name: string, address: string }[]= [...friends];
     data.splice(index, 1)
     setFriends(data)
   }
@@ -88,7 +97,7 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact 
                   />
               <textarea 
                   name="address"
-                  placeholder='About Yourself'
+                  placeholder='About address'
                   value={contact.address}
                   onChange={(e)=> setContact(prevState=>({
                     ...prevState,
