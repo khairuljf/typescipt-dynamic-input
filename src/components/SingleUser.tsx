@@ -6,9 +6,14 @@ interface props{
     contact:ContactType;
     setCotnacts:React.Dispatch<React.SetStateAction<ContactType[]>>;
     setContact:React.Dispatch<React.SetStateAction<ContactType>>;
-    setFriends: React.Dispatch<React.SetStateAction<{
+    setFriends:React.Dispatch<React.SetStateAction<{
         name: string;
         address: string;
+        otherFiels: boolean;
+        otherInfo: {
+            mobile: string | number;
+            permanentAddress: string;
+        };
       }[]>>
    
 }

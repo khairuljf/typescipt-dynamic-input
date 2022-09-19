@@ -10,7 +10,12 @@ interface props{
     setFriends: React.Dispatch<React.SetStateAction<{
       name: string;
       address: string;
-    }[]>>
+      otherFiels: boolean;
+      otherInfo: {
+          mobile: string | number;
+          permanentAddress: string;
+      };
+  }[]>>
 
 };
 

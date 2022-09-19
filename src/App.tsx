@@ -17,14 +17,25 @@ function App() {
     address:'',
     friendsInfo:[{
       name:'',
-      address:''
+      address:'',
+      otherFiels:false,
+      otherInfo:{
+        mobile:'',
+        permanentAddress:''
+      }
+      
     }]
 
   });
 
-  const [friends, setFriends] = useState<{name:string;address:string }[]>([{
+  const [friends, setFriends] = useState<{name:string;address:string,otherFiels:boolean, otherInfo:{mobile:string|number, permanentAddress:string} }[]>([{
     name:'',
-    address:''
+    address:'',
+    otherFiels:false,
+    otherInfo:{
+      mobile:'',
+      permanentAddress:'',
+    }
   }]) 
 
 

@@ -3,6 +3,7 @@ import uuid from 'react-uuid';
 import { isBooleanObject } from 'util/types';
 import {ContactType}  from '../ContactType';
 interface props{
+
   setCotnacts:React.Dispatch<React.SetStateAction<ContactType[]>>
   setContact:React.Dispatch<React.SetStateAction<ContactType>>
   contact:ContactType;
@@ -10,11 +11,22 @@ interface props{
   friends: {
     name: string;
     address: string;
-}[];
-setFriends: React.Dispatch<React.SetStateAction<{
+    otherFiels: boolean;
+    otherInfo: {
+        mobile: string | number;
+        permanentAddress: string;
+    };
+}[]
+setFriends:React.Dispatch<React.SetStateAction<{
   name: string;
   address: string;
+  otherFiels: boolean;
+  otherInfo: {
+      mobile: string | number;
+      permanentAddress: string;
+  };
 }[]>>
+
 }
 
 const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact, friends, setFriends }) => {
@@ -42,7 +54,7 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
    
 
     contact.id = contact.name = contact.address='';
-    setFriends([{ name:'',  address:''  }])
+    setFriends([{ name:'',  address:'', otherFiels:false, otherInfo:{mobile:'', permanentAddress:''}  }])
 
   } 
 
@@ -58,19 +70,27 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
 
     const updatedFried={...friend,[key]:value}
 
-    friendsData[index] = {name:updatedFried.name, address:updatedFried.address}
+    friendsData[index] = {name:updatedFried.name, address:updatedFried.address, otherFiels:false, otherInfo:{mobile:'01758062614', permanentAddress:'jadupur'}}
 
     setFriends(prevState=>([...friendsData]))
 
   }
 
   const addFields = () => {
-    let newfield:{ name: string, address: string } = { name: '', address: '' }
+    let newfield:{ name: string, address: string, otherFiels:boolean, otherInfo:{mobile:string|number, permanentAddress:string}  } = {
+        name: '',
+        address: '',  
+        otherFiels:false,
+        otherInfo:{
+          mobile:'',
+          permanentAddress:'',
+    } 
+  }
     setFriends(prevState=>([...prevState, newfield]))
   }
 
   const removeFields = (index:number) => {
-    let data: { name: string, address: string }[]= [...friends];
+    let data: { name: string, address: string, otherFiels:boolean, otherInfo:{mobile:string|number, permanentAddress:string}  }[]= [...friends];
     data.splice(index, 1)
     setFriends(data)
   }
@@ -122,6 +142,7 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
             value={input.address}
             onChange={event => handleFriendChange(index, event )}
             ></textarea>
+            <span className='otherFields' onClick={()=>console.log("Other Fiels")}>Other Fields ?</span>
             <span onClick={() => removeFields(index)} >- Remove Friend </span>
         </div>
           )

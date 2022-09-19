@@ -4,6 +4,11 @@ export interface ContactType{
         address:string;
         friendsInfo:{
                 name:string;
-                address:string
+                address:string;
+                otherFiels:boolean;
+                otherInfo:{
+                        mobile:number | string;
+                        permanentAddress:string;      
+                }
         }[]
 }
