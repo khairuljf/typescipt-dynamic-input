@@ -64,16 +64,25 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
     const key=event?.target?.name;
     const value=event?.target?.value;
 
-    console.log(key, value)
+    //console.log(key, value)
 
     let friendsData=friends;
 
     const friend=friendsData[index];
 
+    
 
-    friendsData[index] = {...friend,[key]:value}
+    if(key === 'permanentAddress' || key === 'mobile' ){
+      //friendsData[index] = {...friend, otherInfo[key]=''  }
+    }else{
+      friendsData[index] = {...friend,[key]:value}
+    }
+
+
 
     setFriends(prevState=>([...friendsData]))
+
+    console.log(friends)
 
   }
 
@@ -170,8 +179,9 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
                           <input 
                             name='mobile'
                             placeholder='Enter mobile number'
-                            onChange={event => handleFriendChange(index, event )}
                             value={input.otherInfo.permanentAddress}
+                            onChange={event => handleFriendChange(index, event )}
+                           
                             />
             </>
             }
