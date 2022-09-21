@@ -64,13 +64,14 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
     const key=event?.target?.name;
     const value=event?.target?.value;
 
+    console.log(key, value)
+
     let friendsData=friends;
 
     const friend=friendsData[index];
 
-    const updatedFried={...friend,[key]:value}
 
-    friendsData[index] = {name:updatedFried.name, address:updatedFried.address, otherFiels:false, otherInfo:{mobile:'01758062614', permanentAddress:'jadupur'}}
+    friendsData[index] = {...friend,[key]:value}
 
     setFriends(prevState=>([...friendsData]))
 
@@ -89,6 +90,18 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
     setFriends(prevState=>([...prevState, newfield]))
   }
 
+  const addOtherInfo = (index:number)=>{
+  
+    
+    let friendsData=friends;
+
+    const friend=friendsData[index];
+
+    friendsData[index] = {...friend, otherFiels:true}
+
+    setFriends(prevState=>([...friendsData]))
+
+  }
   const removeFields = (index:number) => {
     let data: { name: string, address: string, otherFiels:boolean, otherInfo:{mobile:string|number, permanentAddress:string}  }[]= [...friends];
     data.splice(index, 1)
@@ -142,21 +155,50 @@ const UserForm:React.FC<props> = ({ contact, contacts,  setCotnacts, setContact,
             value={input.address}
             onChange={event => handleFriendChange(index, event )}
             ></textarea>
-            <span className='otherFields' onClick={()=>console.log("Other Fiels")}>Other Fields ?</span>
+
+
+            { input.otherFiels && 
+            <>
+                <textarea 
+                          name="permanentAddress"
+                          placeholder='Permanent'
+                          value={input.otherInfo.mobile}
+                          onChange={event => handleFriendChange(index, event )}
+                          ></textarea>
+
+
+                          <input 
+                            name='mobile'
+                            placeholder='Enter mobile number'
+                            onChange={event => handleFriendChange(index, event )}
+                            value={input.otherInfo.permanentAddress}
+                            />
+            </>
+            }
+            
+
+
+
+
+        {
+            !input.otherFiels &&   <span 
+                className='otherFields'
+                onClick={event => addOtherInfo(index )}
+              >Other Fields ?</span>
+        }
+           
+
+
             <span onClick={() => removeFields(index)} >- Remove Friend </span>
         </div>
           )
         })}
 
-       
 
-          <div className="friends-info action">
+        <div className="friends-info action">
+            <span onClick={addFields}>+ Add Friend</span> 
+         </div>
 
-            <span onClick={addFields}>+ Add Friend</span>
-            
-          </div>
-
-          
         <button type='submit'>{!contact.id ? "Add Contact" : "Update"}</button>
     </form>
     </>
